@@ -14,11 +14,12 @@ pub struct KeySet {
 fn gen_prime(p: i64) -> i64 {
     // This may not be cryptographically safe, use
     // `OsRng` (for example) in production software.
-    let mut rand_number = thread_rng().gen_range(2u64, p as u64 - 1);
-    while !is_prime(rand_number) {
-        rand_number = thread_rng().gen_range(2u64, p as u64 - 1);
+    let mut rng = thread_rng();
+    let mut x: u64 = rng.gen_range(0..p as u64 - 1);
+    while !is_prime(x) {
+        x = rng.gen_range(0..p as u64 - 1);
     }
-    rand_number as i64
+    x as i64
 }
 
 fn is_prime(n: u64) -> bool {
