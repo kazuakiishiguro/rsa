@@ -12,6 +12,8 @@ This repo is my personal practice of implementing RSA encryption / decryption sc
 5. Finally we will get the key pair of public key <img src="https://latex.codecogs.com/svg.latex?(e,n)" title="(e,n)" />, and private key <img src="https://latex.codecogs.com/svg.latex?(d,n)" title="(d,n)" />.
 
 ## Example
+
+### rust
 ```rust
 use rsa::{gen_keys, encrypt, decrypt};
 
