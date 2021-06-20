@@ -18,9 +18,8 @@ assert() {
     rm tmp.txt
 }
 
-assert 2 6 4
-assert 1 1 0
-assert 2 8 6
-assert 6 54 24
+assert 0 1
+assert 1 3
+assert 1 187963
 
 echo OK
