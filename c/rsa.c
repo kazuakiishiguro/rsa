@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <inttypes.h>
 #include "rsa.h"
 
 int gcd (int a, int b) {
