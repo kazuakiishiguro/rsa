@@ -1,6 +1,7 @@
 extern crate rand;
 
 use rand::{thread_rng, Rng};
+use std::mem;
 
 const EXP: i64 = 65537;
 
@@ -29,16 +30,12 @@ fn is_prime(n: u64) -> bool {
     (2..n).all(|a| n % a != 0)
 }
 
-fn gcd(a: i64, b: i64) -> i64 {
-    let mut a = a;
-    let mut b = b;
-    let mut tmp;
-    while a != 0 {
-        tmp = a;
-        a = b % a;
-        b = tmp;
+fn gcd(mut a: i64, mut b: i64) -> i64 {
+    while b != 0 {
+        a %= b;
+        mem::swap(&mut a , &mut b)
     }
-    b.abs()
+    a
 }
 
 fn ext_euclid(a: i64, b: i64) -> i64 {
