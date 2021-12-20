@@ -33,27 +33,25 @@ fn is_prime(n: u64) -> bool {
 fn gcd(mut a: i64, mut b: i64) -> i64 {
     while b != 0 {
         a %= b;
-        mem::swap(&mut a , &mut b)
+        mem::swap(&mut a, &mut b)
     }
     a
 }
 
 fn ext_euclid(a: i64, b: i64) -> i64 {
-    let mut a = a;
-    let (mut x, mut y, mut u, mut v, mut gcd) = (0, 1, 1, 0, b);
-    while a != 0 {
-        let q = gcd / a;
-        let r = gcd % a;
-        let m = x - u * q;
-        let n = y - v * q;
-        gcd = a;
-        a = r;
-        x = u;
-        y = v;
-        u = m;
-        v = n;
+    let (mut sj, mut sj_last) = (0, 1);
+    let (mut tj, mut tj_last) = (1, 0);
+    let (mut rj, mut rj_last) = (b, a);
+    while rj != 0 {
+        let quotient = rj_last / rj;
+        rj_last -= quotient * rj;
+        sj_last -= quotient * sj;
+        tj_last -= quotient * tj;
+        mem::swap(&mut rj, &mut rj_last);
+        mem::swap(&mut sj, &mut sj_last);
+        mem::swap(&mut tj, &mut tj_last);
     }
-    y
+    tj_last
 }
 
 pub fn gen_keys() -> KeySet {
